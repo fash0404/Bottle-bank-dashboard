@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bottle Bank Admin Dashboard</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f3f6f5;--card:#fff;--tx:#14211d;--mu:#5b6b66;--ac:#0f9d78;--ln:#d9e1de;--ok:#1f9d63;--wn:#d99a12;--bad:#d64545;--of:#8a9692}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1513;--card:#17211e;--tx:#e8f0ed;--mu:#93a49e;--ac:#2ecf9f;--ln:#2a3833;--ok:#3dd68c;--wn:#f0b429;--bad:#ff6b6b}}
+:root[data-theme="dark"]{--bg:#0e1513;--card:#17211e;--tx:#e8f0ed;--mu:#93a49e;--ac:#2ecf9f;--ln:#2a3833;--ok:#3dd68c;--wn:#f0b429;--bad:#ff6b6b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:1060px;margin:0 auto;padding:14px}h1{font-size:21px;margin:0}h2{font-size:15px;margin:0 0 8px}
+.s{color:var(--mu);font-size:12.5px;margin:2px 0}.card{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:12px;margin-bottom:12px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.kp div{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:10px 12px}.kp b{display:block;font-size:24px;line-height:1.1}.kp span{color:var(--mu);font-size:12px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:760px){.g2{grid-template-columns:1fr}}
+.sc{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:640px}th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--ln);white-space:nowrap}th{color:var(--mu);font-weight:600;font-size:12px}
+tr.r{cursor:pointer}tr.r:hover,tr.sel{background:color-mix(in srgb,var(--ac) 10%,transparent)}
+.bar{height:7px;width:90px;background:var(--ln);border-radius:4px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:6px}.bar i{display:block;height:100%}
+.pill{font-size:11.5px;padding:2px 8px;border-radius:99px;color:#fff;font-weight:600}.ok{background:var(--ok)}.wn{background:var(--wn)}.bad{background:var(--bad)}.of{background:var(--of)}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}.kv div{border:1px solid var(--ln);border-radius:8px;padding:6px 8px}.kv span{display:block;color:var(--mu);font-size:11.5px}.kv b{font-size:15px}
+button{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer}a{color:var(--ac)}
+svg text{fill:var(--tx);font-family:system-ui,sans-serif}.al{padding:6px 0;border-bottom:1px solid var(--ln)}
+
+body{background:linear-gradient(180deg,color-mix(in srgb,var(--ac) 14%,var(--bg)),var(--bg) 340px) no-repeat,var(--bg)}
+.top{background:linear-gradient(120deg,#0f9d78,#2f80ed 60%,#8e5cf6);color:#fff;border-radius:14px;padding:14px 16px;box-shadow:0 4px 14px rgba(47,128,237,.25)}
+.top h1{color:#fff}.top .s{color:rgba(255,255,255,.88)}
+.kp div{border-top:4px solid var(--k,var(--ac));background:color-mix(in srgb,var(--k,var(--ac)) 12%,var(--card))}.kp b{color:var(--k,var(--ac))}
+.kp div:nth-child(1){--k:#0f9d78}.kp div:nth-child(2){--k:#2f80ed}.kp div:nth-child(3){--k:#8e5cf6}.kp div:nth-child(4){--k:#f2994a}.kp div:nth-child(5){--k:#e5484d}
+.card h2{border-left:5px solid var(--ac);padding-left:8px}
+.card:nth-of-type(1) h2{border-color:#2f80ed}
+thead th{background:color-mix(in srgb,var(--ac) 16%,var(--card));color:var(--tx)}
+.kv div:nth-child(1){background:color-mix(in srgb,#0f9d78 14%,var(--card))}.kv div:nth-child(2){background:color-mix(in srgb,#2f80ed 14%,var(--card))}.kv div:nth-child(3){background:color-mix(in srgb,#f2994a 16%,var(--card))}
+.kv div:nth-child(4){background:color-mix(in srgb,#8e5cf6 14%,var(--card))}.kv div:nth-child(5){background:color-mix(in srgb,#f2c94c 18%,var(--card))}.kv div:nth-child(6){background:color-mix(in srgb,#e5484d 12%,var(--card))}
+button{background:linear-gradient(120deg,#0f9d78,#2f80ed)}
+.al{border-left:4px solid var(--wn);padding-left:8px;margin-bottom:4px;border-bottom:0;background:color-mix(in srgb,var(--wn) 10%,var(--card));border-radius:6px}
+.pill{box-shadow:0 1px 3px rgba(0,0,0,.2)}
+</style></head><body><main>
+<div class="top"><div><h1>Bottle Bank Admin Dashboard</h1><p class="s" id="mode"></p></div><div class="s" id="clk"></div></div>
+<div class="kp" id="kp"></div>
+<div class="g2"><div class="card"><h2>Locations</h2><svg id="map" viewBox="0 0 400 250" width="100%"></svg>
+<p class="s">Positions plotted from each bank's latitude/longitude (no map tiles). Click a marker. Colour = status.</p></div>
+<div class="card" id="det"></div></div>
+<div class="card"><h2>All bottle banks</h2><div class="sc"><table><thead><tr><th>Bank</th><th>Location</th><th>Bottles</th><th>Fill level</th><th>Battery</th><th>Power</th><th>Signal</th><th>Last seen</th><th>Status</th></tr></thead><tbody id="tb"></tbody></table></div></div>
+<div class="card"><h2>Alerts</h2><div id="al"></div></div>
+<p class="s">Demo data is simulated (1 tick = 6 simulated minutes). To show real data, host this file yourself and set DATA_URL to your server's JSON endpoint; field names are in the script.</p>
+</main>
+<script>
+// Live feed: leave '' for demo mode. Endpoint must return {"banks":[{id,name,lat,lon,count,fill,batt_pct,batt_v,charging,solar_a,rssi,door_open,last_seen_s}]}
+var DATA_URL='';
+var CAPB=220,sel=0,T=540,rnd=Math.random;
+var B=[['BB-01','Engineering Lecture Theatre (LTH)',6.5262,3.3771,1.4,'Eng. LTH'],['BB-02','Faculty of Agriculture',6.5271,3.3799,1.2,'Agriculture'],['BB-03','Environmental Science',6.5255,3.3823,1.3,'Env. Science'],['BB-04','ECE Classroom',6.5240,3.3790,1.0,'ECE Class'],['BB-05','CHE Classroom',6.5236,3.3808,1.4,'CHE Class'],['BB-06','Female Hostel',6.5217,3.3779,1.1,'Female Hostel'],['BB-07','Middle Block',6.5250,3.3786,1.3,'Middle Block']].map(function(a,i){
+ return {id:a[0],n:a[1],s:a[5],lat:a[2],lon:a[3],sh:a[4]/1.4,cnt:[18,92,140,176,60,30,110][i],soc:[88,72,55,26,93,64,81][i],on:i!==3?1:0,door:i===1?1:0,rssi:-50-Math.floor(rnd()*30),seen:i===3?25:0,sol:0,chg:'Discharging',hc:[],hb:[]}});
+// NOTE: lat/lon above are placeholders. Replace with the real GPS position of each bank.
+function fill(b){return Math.min(100,Math.round(b.cnt/CAPB*100))}
+function volt(b){return +(11.6+b.soc/100*1.1).toFixed(2)}
+function st(b){if(!b.on)return{t:'Offline',c:'of'};var f=fill(b);if(f>=85)return{t:'Full - pick up',c:'bad'};if(b.door)return{t:'Door open',c:'wn'};if(b.soc<30)return{t:'Low battery',c:'bad'};if(f>=70)return{t:'Pickup soon',c:'wn'};return{t:'OK',c:'ok'}}
+function step(){T=(T+6)%1440;var h=T/60;
+ B.forEach(function(b){
+  if(!b.on){b.seen+=6;return}
+  b.seen=0;var sun=Math.max(0,Math.sin(Math.PI*(h-6)/12));b.sol=+(sun*2.2*b.sh).toFixed(2);var net=b.sol-0.17;
+  b.soc=Math.max(0,Math.min(100,b.soc+net*1.43));
+  b.chg=b.soc>=99&&net>0?'Full (float)':net>0.05?'Charging':'Discharging';
+  if(h>=7&&h<=17&&!b.door&&rnd()<.4&&b.cnt<CAPB)b.cnt=Math.min(CAPB+10,b.cnt+1+Math.floor(rnd()*3));
+  b.hc.push(b.cnt);b.hb.push(b.soc);if(b.hc.length>48){b.hc.shift();b.hb.shift()}});
+}
+function ingest(j){B=j.banks.map(function(x,i){var o=B[i]||{hc:[],hb:[]};return{id:x.id,n:x.name,lat:x.lat,lon:x.lon,cnt:x.count,soc:x.batt_pct,on:x.last_seen_s<600?1:0,door:x.door_open?1:0,rssi:x.rssi,seen:Math.round(x.last_seen_s/60),sol:x.solar_a,chg:x.charging?'Charging':'Discharging',v:x.batt_v,hc:(o.hc.concat([x.count])).slice(-48),hb:(o.hb.concat([x.batt_pct])).slice(-48)}})}
+function col(c){return 'var(--'+c+')'}
+function spark(a,mx,c){if(a.length<2)return '';var p=a.map(function(v,i){return (i/(a.length-1)*300).toFixed(1)+','+(58-Math.min(v,mx)/mx*54).toFixed(1)}).join(' ');return '<svg viewBox="0 0 300 60" width="100%"><polyline fill="none" stroke="'+c+'" stroke-width="2" points="'+p+'"/></svg>'}
+function render(){
+ var on=B.filter(function(b){return b.on}),tot=B.reduce(function(s,b){return s+b.cnt},0);
+ var avg=Math.round(B.reduce(function(s,b){return s+fill(b)},0)/B.length);
+ var pick=B.filter(function(b){return fill(b)>=70}).length,low=B.filter(function(b){return b.soc<30}).length;
+ document.getElementById('kp').innerHTML=[[tot,'Bottles in all banks'],[on.length+' / '+B.length,'Banks online'],[avg+'%','Average fill level'],[pick,'Need pickup soon'],[low,'Low battery']].map(function(k){return '<div><b>'+k[0]+'</b><span>'+k[1]+'</span></div>'}).join('');
+ document.getElementById('clk').textContent=DATA_URL?'Live feed':'Simulated time '+('0'+Math.floor(T/60)).slice(-2)+':'+('0'+T%60).slice(-2);
+ document.getElementById('mode').textContent=DATA_URL?'Live telemetry':'Demo mode: simulated telemetry';
+ document.getElementById('tb').innerHTML=B.map(function(b,i){var s=st(b),f=fill(b),fc=f>=85?'bad':f>=70?'wn':'ok',bc=b.soc<30?'bad':b.soc<50?'wn':'ok';
+  return '<tr class="r'+(i===sel?' sel':'')+'" data-i="'+i+'"><td><b>'+b.n+'</b><br><span class="s">'+b.id+'</span></td><td class="s">'+b.lat.toFixed(4)+', '+b.lon.toFixed(4)+'</td><td><b>'+b.cnt+'</b></td><td><span class="bar"><i style="width:'+f+'%;background:'+col(fc)+'"></i></span>'+f+'%</td><td><span class="bar"><i style="width:'+Math.round(b.soc)+'%;background:'+col(bc)+'"></i></span>'+Math.round(b.soc)+'%</td><td>'+(b.on?b.chg:'-')+'</td><td>'+(b.on?b.rssi+' dBm':'-')+'</td><td>'+(b.seen<1?'just now':b.seen+' min ago')+'</td><td><span class="pill '+s.c+'">'+s.t+'</span></td></tr>'}).join('');
+ var la=B.map(function(b){return b.lat}),lo=B.map(function(b){return b.lon}),a0=Math.min.apply(0,la),a1=Math.max.apply(0,la),o0=Math.min.apply(0,lo),o1=Math.max.apply(0,lo);
+ var m='<rect x="1" y="1" width="398" height="248" rx="8" style="fill:color-mix(in srgb,#2f80ed 9%,var(--card));stroke:var(--ln)"/>';for(var g=1;g<4;g++)m+='<line x1="'+g*100+'" y1="1" x2="'+g*100+'" y2="249" stroke="var(--ln)" stroke-dasharray="3 4"/>';
+ B.forEach(function(b,i){var x=60+(b.lon-o0)/(o1-o0||1)*270,y=215-(b.lat-a0)/(a1-a0||1)*180,s=st(b);
+  m+='<g class="mk" data-i="'+i+'" style="cursor:pointer"><circle cx="'+x+'" cy="'+y+'" r="'+(i===sel?13:9)+'" fill="'+col(s.c)+'" stroke="var(--card)" stroke-width="2"/><text x="'+x+'" y="'+(y-15)+'" font-size="9" text-anchor="middle">'+(b.s||b.n)+'</text><text x="'+x+'" y="'+(y+3.5)+'" font-size="9" text-anchor="middle" style="fill:#fff;font-weight:700">'+fill(b)+'</text></g>'});
+ document.getElementById('map').innerHTML=m+'<text x="385" y="18" font-size="11" text-anchor="end">N &uarr;</text>';
+ var b=B[sel],s=st(b);
+ document.getElementById('det').innerHTML='<h2>'+b.n+' <span class="pill '+s.c+'">'+s.t+'</span></h2><p class="s">'+b.id+' | '+b.lat.toFixed(5)+', '+b.lon.toFixed(5)+' | <a target="_blank" rel="noopener" href="https://www.google.com/maps?q='+b.lat+','+b.lon+'">Open in Google Maps</a></p><div class="kv"><div><span>Bottles</span><b>'+b.cnt+'</b></div><div><span>Fill level</span><b>'+fill(b)+'%</b></div><div><span>Battery</span><b>'+Math.round(b.soc)+'% ('+(b.v||volt(b))+' V)</b></div><div><span>Charging</span><b>'+(b.on?b.chg:'-')+'</b></div><div><span>Solar input</span><b>'+b.sol+' A</b></div><div><span>Service door</span><b>'+(b.door?'OPEN':'Closed')+'</b></div></div><p class="s">Bottle count (recent)</p>'+spark(b.hc,CAPB+10,'var(--ac)')+'<p class="s">Battery % (recent)</p>'+spark(b.hb,100,'var(--wn)')+'<p style="margin:6px 0 0"><button id="emp">Mark bin emptied</button></p>';
+ var al=[];B.forEach(function(b){if(!b.on)al.push([b.n+' is offline (last seen '+b.seen+' min ago)','of']);if(fill(b)>=85)al.push([b.n+' is '+fill(b)+'% full: schedule pickup','bad']);if(b.on&&b.door)al.push([b.n+': service door is open','wn']);if(b.on&&b.soc<30)al.push([b.n+': battery low ('+Math.round(b.soc)+'%)','bad'])});
+ document.getElementById('al').innerHTML=al.length?al.map(function(a){return '<div class="al"><span class="pill '+a[1]+'">&nbsp;</span> '+a[0]+'</div>'}).join(''):'<p class="s">No active alerts.</p>'}
+document.addEventListener('click',function(e){var t=e.target.closest('[data-i]');if(t){sel=+t.getAttribute('data-i');render()}if(e.target.id==='emp'){B[sel].cnt=0;B[sel].hc=[];render()}});
+function tick(){if(DATA_URL){fetch(DATA_URL).then(function(r){return r.json()}).then(function(j){ingest(j);render()}).catch(function(){})}else{step();render()}}
+if(!DATA_URL)for(var k=0;k<40;k++)step();
+render();setInterval(tick,DATA_URL?10000:3000);
+</script></body></html>
